@@ -24,23 +24,26 @@ class ViewController: UIViewController {
     // MARK: - Life Cycles Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        redNumber.text = String(redSlider.value)
-        greenNumber.text = String(greenSlider.value)
-        blueNumber.text = String(blueSlider.value)
+        
+        colorView.layer.cornerRadius = 15
+        
+        colorChange()
     }
     
     // MARK: - IB actions
-    @IBAction func changeRedColor() {
-        redNumber.text = String(format: "%.2f", redSlider.value)
-        colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: 1.00)
-    }
-    @IBAction func changeGreenColor() {
-        greenNumber.text = String(format: "%.2f", greenSlider.value)
-        colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: 1.00)
-    }
-    @IBAction func changeBlueColor() {
-        blueNumber.text = String(format: "%.2f", blueSlider.value)
-        colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: 1.00)
+    @IBAction func rgbSlider (_ sender:UISlider) {
+        colorChange()
     }
     
+    // MARK: - Private methods
+    private func colorChange() {
+        colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
+                                            green: CGFloat(greenSlider.value),
+                                            blue: CGFloat(blueSlider.value),
+                                            alpha: 1.00)
+        
+        redNumber.text = String(format:"%.2f", redSlider.value)
+        greenNumber.text = String(format:"%.2f", greenSlider.value)
+        blueNumber.text = String(format:"%.2f", blueSlider.value)
+    }
 }
